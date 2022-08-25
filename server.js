@@ -4,7 +4,8 @@ const express=require("express");
 
 const app = express();
 //connectiong to the db
-mongoose.connect("mongodb://localhost:27017/slDB");
+// mongoose.connect("mongodb://localhost:27017/slDB");
+mongoose.connect("mongodb+srv://admin-adi:test1234@atlascluster.i6ahati.mongodb.net/slDB");
 
 app.get("/services/:service", (req,res) =>{
     const service=req.params.service;
@@ -39,6 +40,7 @@ app.get("/", (req,res) =>{
         }
     });
 });
+
 
 const serviceSchema=new mongoose.Schema({
     type:String,

@@ -72,5 +72,5 @@ const PreviewSchema=new mongoose.Schema({
 });
 const Preview=mongoose.model("Preview", PreviewSchema);
 
-app.listen(3000,() => {console.log("server is up on port 5000")});
+app.listen(8080,() => {console.log("server is up on port 8080")});
 

@@ -7,6 +7,13 @@ const app = express();
 // mongoose.connect("mongodb://localhost:27017/slDB");
 mongoose.connect("mongodb+srv://admin-adi:test1234@atlascluster.i6ahati.mongodb.net/slDB");
 
+// Rules of API
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Heafers', 'Origin, X-Requested-With, Content-Typr, Accept, Authorization');
+    next();
+});
+
 app.get("/services/:service", (req,res) =>{
     const service=req.params.service;
     Service.find({type : service},function(err,result) {

@@ -5,7 +5,7 @@ const express=require("express");
 const app = express();
 //connectiong to the db
 // mongoose.connect("mongodb://localhost:27017/slDB");
-mongoose.connect(process.env.REACT_APP_MONGO_CONNECTION);
+mongoose.connect(process.env.REACT_APP_MONGODB_CONNECTION);
 
 // Rules of API
 app.use((req, res, next) => {

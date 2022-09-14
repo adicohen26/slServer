@@ -8,6 +8,9 @@ on:
     branches:
       - main
   workflow_dispatch:
+  
+env:
+  REACT_APP_MONGODB_CONNECTION: ${{REACT_APP_MONGODB_CONNECTION}}
 
 jobs:
   build:

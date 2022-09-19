@@ -57,7 +57,7 @@ const serviceSchema=new mongoose.Schema({
     discription:String,
     participants:String,
     duration:Array,
-    imgName:String,
+    imgName:Array,
     specificData:JSON
 });
 const Service=mongoose.model("Service", serviceSchema);

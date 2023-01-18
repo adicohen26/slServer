@@ -54,6 +54,6 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: sharon-and-liron-be
-          slot-name: 'Testing'
+          slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AF7DA619B7164B62A34A7B0972B89BBF }}
           package: .

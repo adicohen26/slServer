@@ -28,23 +28,15 @@ app.get("/services/:service", (req,res) =>{
 }); 
 
 app.get("/", (req,res) =>{
-    Review.find(function(err,resultReviews) {
+    Preview.find(function(err,result){
         if(err){
             console.log(err);
-        }else if(resultReviews){
-            Preview.find(function(err,resultPreview){
-                if(err){
-                    console.log(err);
-                }else if(resultPreview){
-                    console.log(resultPreview);
-                    res.send({previewOptions:resultPreview, reviews:resultReviews});
-                }else{
-                    res.send("there are no reviews");
-                } 
-            });
+        }else if(result){
+            console.log(result);
+            res.send(result);
         }else{
             res.send("there are no reviews");
-        }
+        } 
     });
 });
 
@@ -62,13 +54,13 @@ const serviceSchema=new mongoose.Schema({
 });
 const Service=mongoose.model("Service", serviceSchema);
 
-const reviewSchema=new mongoose.Schema({
-    name:String,
-    role:String,
-    testimonial:String,
-    imgName:String
-});
-const Review=mongoose.model("Review", reviewSchema);
+// const reviewSchema=new mongoose.Schema({
+//     name:String,
+//     role:String,
+//     testimonial:String,
+//     imgName:String
+// });
+// const Review=mongoose.model("Review", reviewSchema);
 
 const PreviewSchema=new mongoose.Schema({
     type:String,

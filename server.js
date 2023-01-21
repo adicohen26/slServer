@@ -1,11 +1,14 @@
-//mongoose
-const mongoose=require ("mongoose");
+//import data 
+const preview=require("./preview-data.json");
+const review=require("./review-data.json");
+const workshop=require("./workshop-data.json");
+const course=require("./course-data.json");
+const boutiqueBooth=require("./boutiqueBooth-data.json");
+
 const express=require("express");
 
+// mongoose.Promise= global.Promise;
 const app = express();
-//connectiong to the db
-// mongoose.connect("mongodb://localhost:27017/slDB");
-mongoose.connect(process.env.REACT_APP_MONGODB_CONNECTION);
 
 // Rules of API
 app.use((req, res, next) => {
@@ -16,60 +19,29 @@ app.use((req, res, next) => {
 
 app.get("/services/:service", (req,res) =>{
     const service=req.params.service;
-    Service.find({type : service},function(err,result) {
-        if(err){
-            console.log(err);
-        }else if(result){
-            res.json(result);
-        }else{
-            res.send("there are no services");
-        }
-    });
+    console.log("param "+service);
+    switch (service) {
+        case "workshop":
+            res.send(workshop);
+            break;
+        case "course":
+            res.send(workshop);
+            break;
+        case "lecture":
+            res.send(workshop);
+            break;
+        case "boutiqueBooth":
+            res.send(boutiqueBooth);
+            break;
+        default:
+            res.send("404 - page not found");
+            break;
+    }
 }); 
 
 app.get("/", (req,res) =>{
-    Preview.find(function(err,result){
-        if(err){
-            console.log(err);
-        }else if(result){
-            console.log(result);
-            res.send(result);
-        }else{
-            res.send("there are no reviews");
-        } 
-    });
+    console.log("in get");
+    res.send({previewOptions:preview, reviews:review});
 });
-
-
-const serviceSchema=new mongoose.Schema({
-    type:String,
-    typeName:String,
-    previewDuration:String,
-    name:String,
-    discription:String,
-    participants:String,
-    duration:Array,
-    imgName:Array,
-    specificData:JSON
-});
-const Service=mongoose.model("Service", serviceSchema);
-
-// const reviewSchema=new mongoose.Schema({
-//     name:String,
-//     role:String,
-//     testimonial:String,
-//     imgName:String
-// });
-// const Review=mongoose.model("Review", reviewSchema);
-
-const PreviewSchema=new mongoose.Schema({
-    type:String,
-    name:String,
-    productName:String,
-    benefits:Array,
-    imgName:String
-});
-const Preview=mongoose.model("Preview", PreviewSchema);
 
 app.listen(8080,() => {console.log("server is up on port 8080")});
-
